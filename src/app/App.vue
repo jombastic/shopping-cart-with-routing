@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="navigation-buttons">
+      <button @click="logout" class="button is-text is-pulled-lef">Logout</button>
       <div class="is-pulled-right">
         <router-link to="/products" class="button">
           <i class="fa fa-user-circle"></i><span>Shop</span>
@@ -27,12 +28,36 @@ export default {
   name: 'App',
 
   created() {
-    this.$store.dispatch('getCartItems');
-    this.$store.dispatch('getProductItems');
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.updateInitialState(token);
+    }
   },
 
   computed: {
-    ...mapGetters(['cartQuantity'])
+    ...mapGetters(['token', 'cartQuantity'])
+  },
+
+  watch: {
+    token() {
+      if (this.token) {
+        this.updateInitialState(this.token);
+      }
+    }
+  },
+
+  methods: {
+    logout() {
+      this.$store.dispatch('logout').then(() => {
+        this.$router.push('/login')
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    updateInitialState(token) {
+      this.$store.dispatch('getCartItems', token);
+      this.$store.dispatch('getProductItems', token);
+    }
   }
 }
 </script>

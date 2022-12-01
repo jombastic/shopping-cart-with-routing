@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import CartList from '../components/cart/CartList.vue';
 import ProductList from '../components/product/ProductList.vue';
 import ProductItem from '../components/product/ProductItem.vue';
+import LoginBox from '../components/login/LoginBox.vue'
 import NotFound from '../components/NotFound.vue';
 
 const router = createRouter({
@@ -23,6 +24,10 @@ const router = createRouter({
             path: '/products/:id',
             component: ProductItem,
             props: true
+        },
+        {
+            path: '/login',
+            component: LoginBox
         },
         {
             path: '/:pathMatch(.*)*',
