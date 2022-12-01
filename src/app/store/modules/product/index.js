@@ -19,7 +19,8 @@ const actions = {
 }
 
 const getters = {
-  productItems: state => state.productItems
+  productItems: state => state.productItems,
+  productItemFromId: state => id => state.productItems.find(productItem => productItem.id === id)
 }
 
 const productModule = {
