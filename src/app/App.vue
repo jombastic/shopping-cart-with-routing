@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="navigation-buttons">
+    <div v-if="$route.path !== '/login'" class="navigation-buttons">
       <button @click="logout" class="button is-text is-pulled-lef">Logout</button>
       <div class="is-pulled-right">
         <router-link to="/products" class="button">
@@ -48,11 +48,13 @@ export default {
 
   methods: {
     logout() {
-      this.$store.dispatch('logout').then(() => {
-        this.$router.push('/login')
-      }).catch(error => {
-        console.log(error);
-      });
+      this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/login')
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     updateInitialState(token) {
       this.$store.dispatch('getCartItems', token);
@@ -63,7 +65,8 @@ export default {
 </script>
 
 <style>
-html, body {
+html,
+body {
   height: 100%;
   background: #F2F6FA;
 }
