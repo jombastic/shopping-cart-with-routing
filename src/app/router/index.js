@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CartList from '../components/cart/CartList.vue';
-import ProductList from '../components/product/ProductList.vue';
-import ProductItem from '../components/product/ProductItem.vue';
-import LoginBox from '../components/login/LoginBox.vue'
-import NotFound from '../components/NotFound.vue';
+const CartList = () => import('../components/cart/CartList.vue');
+const ProductList = () => import('../components/product/ProductList.vue');
+const ProductItem = () => import('../components/product/ProductItem.vue');
+const LoginBox = () => import('../components/login/LoginBox.vue');
+const NotFound = () => import('../components/NotFound.vue');
 
 const router = createRouter({
     history: createWebHistory(),
